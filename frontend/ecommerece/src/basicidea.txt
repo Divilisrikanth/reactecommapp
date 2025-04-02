@@ -1,0 +1,116 @@
+how display review rating and stars based on rating stars should be filled golden yellow color in react native
+To display review ratings with stars filled in golden yellow color based on the rating in React Native, you can use a combination of components and styles. Here’s a simple approach using the react-native-elements library, which provides ready-to-use components for displaying ratings.
+
+First, you need to install the react-native-elements library:
+
+sh
+npm install react-native-elements
+npm install @react-native-vector-icons
+Here’s how you can implement it:
+
+ReviewRating.js:
+javascript
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Rating } from 'react-native-elements';
+
+const ReviewRating = ({ rating, totalReviews }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.ratingText}>{`Rating: ${rating}/5`}</Text>
+      <Rating
+        imageSize={20}
+        readonly
+        startingValue={rating}
+        style={styles.rating}
+      />
+      <Text style={styles.reviewText}>{`${totalReviews} Reviews`}</Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    padding: 10,
+  },
+  ratingText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  rating: {
+    paddingVertical: 10,
+  },
+  reviewText: {
+    fontSize: 16,
+    color: 'gray',
+  },
+});
+
+export default ReviewRating;
+Explanation:
+Components:
+
+Rating: A component from react-native-elements that displays the star rating.
+
+View and Text: Basic React Native components for layout and text display.
+
+Props:
+
+rating: The average rating value (e.g., 4.5).
+
+totalReviews: The total number of reviews (e.g., 120).
+
+Styles:
+
+container: Centers the content and provides padding.
+
+ratingText: Styles for the rating text (e.g., "Rating: 4.5/5").
+
+rating: Styles for the rating stars.
+
+reviewText: Styles for the total reviews text (e.g., "120 Reviews").
+
+Customizing Star Color: If you need to customize the color of the stars, you can use the tintColor property:
+
+javascript
+<Rating
+  imageSize={20}
+  readonly
+  startingValue={rating}
+  style={styles.rating}
+  tintColor="gold"
+/>
+Usage:
+You can use the ReviewRating component in your screens or other components:
+
+javascript
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import ReviewRating from './components/ReviewRating';
+
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <ReviewRating rating={4.5} totalReviews={120} />
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default App;
+Explanation:
+ReviewRating Component: Displays the rating and total reviews with stars filled in golden yellow color.
+
+App Component: Demonstrates how to use the ReviewRating component within a simple app.
+
+With this approach, you can easily display review ratings with golden yellow stars based on the rating in your React Native app. Let me know if you need further customization or assistance!
+
